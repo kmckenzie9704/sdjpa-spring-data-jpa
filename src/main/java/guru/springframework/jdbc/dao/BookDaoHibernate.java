@@ -1,19 +1,11 @@
 package guru.springframework.jdbc.dao;
 
-import guru.springframework.jdbc.domain.Author;
 import guru.springframework.jdbc.domain.Book;
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.*;
-import jakarta.persistence.metamodel.Metamodel;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Map;
 
-@Component
-@EnableAutoConfiguration
 public class BookDaoHibernate implements BookDao {
 
     private final EntityManagerFactory emf;
@@ -24,7 +16,16 @@ public class BookDaoHibernate implements BookDao {
 
     @Override
     public List<Book> findAllBooksSortByTitle(Pageable pageable) {
-        return null;
+        EntityManager em = getEntityManager();
+        try{
+            String hql = "SELECT b FROM Book b order by b.title " + pageable.getSort().getOrderFor("title").getDirection().name();
+            TypedQuery<Book> query = em.createQuery(hql, Book.class);
+            query.setFirstResult(Math.toIntExact(pageable.getOffset()));
+            query.setMaxResults(pageable.getPageSize());
+            return query.getResultList();
+        }finally {
+            em.close();
+        }
     }
 
     @Override
@@ -51,6 +52,11 @@ public class BookDaoHibernate implements BookDao {
     }
 
 //    @Override
+//    public Book findBookByTitle(String title) {
+//        return null;
+//    }
+
+    //    @Override
 //    public List<Book> findAll() {
 //        EntityManager em =  getEntityManager();
 //        try{
@@ -85,23 +91,23 @@ public class BookDaoHibernate implements BookDao {
         return book;
     }
 
-    @Override
-    public Book findBookByTitle(String title) {
-        EntityManager em = getEntityManager();
-
-        try{
-            TypedQuery<Book> query = em.createNamedQuery("book_find_by_title", Book.class);
-            query.setParameter("title", title);
-
-            Book book = query.getSingleResult();
-            return book;
-
-        }finally {
-            em.close();
-
-        }
-
-    }
+//    @Override
+//    public Book findBookByTitle(String title) {
+//        EntityManager em = getEntityManager();
+//
+//        try{
+//            TypedQuery<Book> query = em.createNamedQuery("book_find_by_title", Book.class);
+//            query.setParameter("title", title);
+//
+//            Book book = query.getSingleResult();
+//            return book;
+//
+//        }finally {
+//            em.close();
+//
+//        }
+//
+//    }
 
 //    @Override
 //    public Book findBookByTitleNameCriteria(String title) {

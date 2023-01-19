@@ -1,7 +1,6 @@
 package guru.springframework.jdbc.dao;
 
 import guru.springframework.jdbc.domain.Book;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -21,5 +20,5 @@ public interface BookDao {
 
     void deleteBookById(Long id);
 
-    Book findBookByTitle(String title);
+//    Book findBookByTitle(String title);
 }

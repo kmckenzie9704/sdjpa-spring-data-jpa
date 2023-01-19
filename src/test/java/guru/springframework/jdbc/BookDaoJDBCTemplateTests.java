@@ -116,12 +116,12 @@ class BookDaoJDBCTemplateTests {
 
         assertThat(book).isNotNull();
     }
-    @Test
-    void testGetBookByTitle(){
-        Book book = bookDAO.findBookByTitle("Clean Code");
-
-        assertThat(book).isNotNull();
-    }
+//    @Test
+//    void testGetBookByTitle(){
+//        Book book = bookDAO.findBookByTitle("Clean Code");
+//
+//        assertThat(book).isNotNull();
+//    }
 
     @Test
     void testSaveNewBook(){

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class BookDaoImpl implements BookDao{
+public class BookDaoImpl  implements BookDao{
 
     private final BookRepository bookRepository;
 
@@ -44,11 +44,11 @@ public class BookDaoImpl implements BookDao{
         bookRepository.deleteById(id);
     }
 
-    @Override
-    public Book findBookByTitle(String title) {
-        return bookRepository.findBookByTitle(title)
-                .orElseThrow(EntityNotFoundException::new);
-    }
+//    @Override
+//    public Book findBookByTitle(String title) {
+//        return bookRepository.findBookByTitle(title)
+//                .orElseThrow(EntityNotFoundException::new);
+//    }
 
     @Override
     public List<Book> findAllBooks() {

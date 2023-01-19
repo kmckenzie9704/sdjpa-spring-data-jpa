@@ -90,12 +90,12 @@ public class DaoIntegrationTest {
         assertThat(saved).isNotNull();
     }
 
-    @Test
-    void testGetBookByName() {
-        Book book = bookDao.findBookByTitle("Clean Code");
-
-        assertThat(book).isNotNull();
-    }
+//    @Test
+//    void testGetBookByName() {
+//        Book book = bookDao.findBookByTitle("Clean Code");
+//
+//        assertThat(book).isNotNull();
+//    }
 
     @Test
     void testGetBook() {
@@ -120,12 +120,12 @@ public class DaoIntegrationTest {
 
     }
 
-    @Test
-    void testGetBookByNameNotFound(){
-        assertThrows(EntityNotFoundException.class, () -> {
-            Book book = bookDao.findBookByTitle("The Natural");
-        });
-    }
+//    @Test
+//    void testGetBookByNameNotFound(){
+//        assertThrows(EntityNotFoundException.class, () -> {
+//            Book book = bookDao.findBookByTitle("The Natural");
+//        });
+//    }
 
     @Test
     void testUpdateAuthor() {

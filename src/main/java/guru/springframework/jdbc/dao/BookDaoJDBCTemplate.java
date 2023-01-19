@@ -44,11 +44,11 @@ public class BookDaoJDBCTemplate implements BookDao{
     public Book getById(Long Id) {
         return jdbcTemplate.queryForObject("SELECT * FROM Book WHERE ID = ?", getBookMapper(), Id);
     }
-    @Override
-    public Book findBookByTitle(String title) {
-        return jdbcTemplate.queryForObject("SELECT * FROM BOOK WHERE TITLE = ?", getBookMapper(), title);
-
-    }
+//    @Override
+//    public Book findBookByTitle(String title) {
+//        return jdbcTemplate.queryForObject("SELECT * FROM BOOK WHERE TITLE = ?", getBookMapper(), title);
+//
+//    }
 
     @Override
     public Book saveNewBook(Book book) {
